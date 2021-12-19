@@ -1,4 +1,5 @@
 ﻿using HomeProject.Models;
+using HomeProject.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,15 +13,18 @@ namespace HomeProject.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IHomeControllerProductService _service;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IHomeControllerProductService service)
         {
             _logger = logger;
+            _service = service;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var model = _service.GetAllEvents();
+            return View(model);
         }
 
         public IActionResult Privacy()

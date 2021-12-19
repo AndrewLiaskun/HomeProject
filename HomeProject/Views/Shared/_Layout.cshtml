@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@model IList<EventModel>;
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
 
@@ -281,21 +283,25 @@ https://www.tooplate.com/view/2119-gymso-fitness
                                      <tbody>
                                          <tr>
                                             <td><small>7:00 am</small></td>
-                                            <td>
-                                                <strong>Cardio</strong>
-                                                <span>7:00 am - 9:00 am</span>
-                                            </td>
-                                            <td>
-                                                <strong>Power Fitness</strong>
-                                                <span>7:00 am - 9:00 am</span>
-                                            </td>
-                                            <td></td>
-                                            <td></td>
-                                            <td>
-                                                <strong>Yoga Section</strong>
-                                                <span>7:00 am - 9:00 am</span>
-                                            </td>
-                                         </tr>
+                                            @{
+                                           
+                                                foreach(EventModel prod in @Model)
+                                                {
+                                                    
+                                                            if (prod.StartTime.Hours.Equals(7))
+                                                            {
+                                                                <td>
+                                                                    <strong>@prod.EventName</strong>
+                                                                     <span>@prod.StartTime - @prod.EndTime</span>
+                                                                </td>
+                                                         
+                                                            }
+                                                         }
+                             
+                                       
+                                                }
+                                            }
+                                        </tr>
 
                                          <tr>
                                             <td><small>9:00 am</small></td>
